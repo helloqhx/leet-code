@@ -54,7 +54,8 @@ public class Problem30 {
                     i += (k + 1) * wordLen;
                 } else if (cnt == targetCount) {
                     j ++;
-                    curMap.put(word, cnt);
+
+
                     if (j == sum) {
                         resultList.add(i);
                         String firstWord = s.substring(i, i + wordLen);
