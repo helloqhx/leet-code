@@ -1,43 +1,45 @@
 package com.leetcode.java;
 
 public class Problem63 {
+    /**
+     * 总数等于：m + n - 2 中选取m-1个的组合数
+     * dp
+     * dp[i][j] = dp[i-1][j] + dp[i][j - 1]
+     * */
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        int m = obstacleGrid.length, n = obstacleGrid[0].length;
+        int[][] dp = new int[m][n];
 
-    public int kthSmallest(int[][] matrix, int k) {
-        int n = matrix.length;
-        int left = matrix[0][0], right = matrix[n - 1][n - 1];
-
-        while (left < right) {
-            int mid = (right + left) >> 1;
-            int cnt = count(matrix, n, mid);
-
-            if (cnt >= k) {
-                right = mid;
+        dp[0][0] = 1;
+        for (int i = 1; i < m; i ++) {
+            if (obstacleGrid[i][0] == 1) {
+                dp[i][0] = 0;
             } else {
-                left = mid + 1;
+                dp[i][0] = dp[i - 1][0];
+            }
+        }
+        for (int i = 1; i < n; i ++) {
+            if (obstacleGrid[0][i] == 1) {
+                dp[0][i] = 0;
+            } else {
+                dp[0][i] = dp[0][i - 1];
             }
         }
 
-        return left;
+        for (int i = 1; i < m; i ++) {
+            for (int j = 1; j < n; j ++) {
+                if (obstacleGrid[i][j] == 1) {
+                    dp[i][j] = 0;
+                } else {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+            }
+        }
+
+        return dp[m - 1][n - 1];
     }
 
-    /**
-     * 获取小于等于max的元素个数
-     * 从左下角向右上搜索
-     * */
-    private int count(int[][] matrix, int n, int max) {
-        int cnt = 0;
-
-        int i = n - 1, j = 0;
-        while (i >= 0 && j < n) {
-            int num = matrix[i][j];
-            if (num <= max) {
-                j ++;
-                cnt += i + 1;
-            } else {
-                i --;
-            }
-        }
-
-        return cnt;
+    public static void main(String[] args) {
+        System.out.println(new Problem62().uniquePaths(7, 3));
     }
 }
