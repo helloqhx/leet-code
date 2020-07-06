@@ -7,6 +7,7 @@ public class Problem63 {
      * dp[i][j] = dp[i-1][j] + dp[i][j - 1]
      * */
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        if (obstacleGrid[0][0] == 1) return 0;
         int m = obstacleGrid.length, n = obstacleGrid[0].length;
         int[][] dp = new int[m][n];
 
