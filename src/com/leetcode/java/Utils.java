@@ -6,6 +6,7 @@ public class Utils {
         for (int i = 0; i < nums.length; i ++) {
             System.out.print(nums[i] + " ");
         }
+        System.out.println();
     }
 
     public static void swap(int[] nums, int i, int j) {
