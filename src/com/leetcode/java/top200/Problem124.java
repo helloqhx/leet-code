@@ -1,5 +1,7 @@
 package com.leetcode.java.top200;
 
+import com.leetcode.java.TreeNode;
+
 public class Problem124 {
 
     /**
@@ -31,12 +33,5 @@ public class Problem124 {
         if (maxValue > resultNode.val) resultNode.val = maxValue;
 
         return Math.max(v, Math.max(leftMax + v, rightMax + v));
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
     }
 }
